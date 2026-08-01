@@ -9,7 +9,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="bg-[#f5f5f5] py-12 sm:py-16 md:py-20">
+    <section id="about" className="bg-[#f5f5f5] py-12 sm:py-16 md:py-12">
       <div className="max-w-8xl mx-auto px-4 sm:px-6">
         {/* About Heading */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">

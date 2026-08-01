@@ -11,7 +11,7 @@ export default function Services() {
   // 1. Toll Operations & Revenue Assurance
   {
     title: "Toll Operations & Revenue Assurance",
-    image: "/images/dummy.png",
+    image: "/images/Toll.png",
     description:
       "We provide end-to-end toll plaza management focused on maximizing revenue, ensuring operational transparency, and maintaining seamless traffic flow. Our experienced professionals leverage industry best practices to improve toll collection efficiency while ensuring full compliance with concession agreements.",
     sections: [
@@ -35,7 +35,7 @@ export default function Services() {
   // 2. Incident Management Services
   {
     title: "Incident Management Services",
-    image: "/images/dummy.png",
+    image: "/images/Incident.png",
     description:
       "Our rapid response teams ensure highways remain safe, operational, and compliant with regulatory standards. We provide complete incident management solutions supported by trained emergency personnel and specialized equipment.",
     sections: [
@@ -58,7 +58,7 @@ export default function Services() {
   // 3. Highway Operations & Road Maintenance
   {
     title: "Highway Operations & Road Maintenance",
-    image: "/images/dummy.png",
+    image: "/images/Highway.png",
     description:
       "We deliver comprehensive highway maintenance services that preserve road infrastructure, improve safety, and ensure uninterrupted operations throughout the project lifecycle.",
     sections: [
@@ -87,7 +87,7 @@ export default function Services() {
   // 4. Manpower Provisioning
   {
     title: "Manpower Provisioning",
-    image: "/images/dummy.png",
+    image: "/images/Manpower.png",
     description:
       "We provide skilled, semi-skilled, and specialized manpower solutions tailored to the operational needs of infrastructure, highway, industrial, and corporate projects. Our recruitment process ensures the right talent is deployed quickly while maintaining quality, compliance, and operational efficiency.",
     sections: [
@@ -111,7 +111,7 @@ export default function Services() {
   // 5. Road Safety Management
   {
     title: "Road Safety Management",
-    image: "/images/dummy.png",
+    image: "/images/Road.png",
     description:
       "Safety is an integral part of every project we undertake. We are committed to protecting both our workforce and road users by implementing industry-leading safety practices, preventive maintenance, and continuous monitoring.",
     sections: [
@@ -147,7 +147,6 @@ export default function Services() {
         prev === servicesData.length - 1 ? 0 : prev + 1
       );
     }, 5000);
-
     return () => clearInterval(interval);
   }, [servicesData.length]);
 
@@ -155,7 +154,6 @@ export default function Services() {
     if (containerRef.current) {
       const cardWidth =
         containerRef.current.children[0]?.offsetWidth || 0;
-
       containerRef.current.scrollTo({
         left: currentSlide * (cardWidth + 24),
         behavior: "smooth",
@@ -164,21 +162,19 @@ export default function Services() {
   }, [currentSlide]);
 
   return (
-   <section id="services" className="py-16 bg-white">
+    <section id="services" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         {/* Heading */}
-        
-  <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
-            <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
-            <h2 className="text-[#08264A] text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold uppercase">
-              Our Services
-            </h2>
-            <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
-          </div>
+        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
+          <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
+          <h2 className="text-[#08264A] text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold uppercase">
+            Our Services
+          </h2>
+          <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
+        </div>
         <p className="text-center text-sm md:text-base font-medium text-[#444]">
           Comprehensive Highway Operations & Infrastructure Solutions
         </p>
-
         <p className="max-w-5xl mx-auto text-center text-xs md:text-sm text-[#666] mt-2 leading-relaxed">
           At Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS), we deliver integrated highway operations, toll management, infrastructure maintenance, and manpower solutions designed to maximize operational efficiency, ensure regulatory compliance, and enhance revenue performance. Backed by nearly 16 years of industry expertise, our services support national highways, expressways, and large-scale infrastructure projects across India.
         </p>
@@ -198,13 +194,14 @@ export default function Services() {
                 key={index}
                 className="w-full md:w-[48%] shrink-0 snap-start"
               >
-                <div className="bg-[#F9F2E9] rounded-2xl p-4 md:p-5 h-[600px] md:h-[640px] flex flex-col">
-                  {/* Image – fixed height */}
+                {/* Increased card height to accommodate taller image */}
+                <div className="bg-[#F9F2E9] rounded-2xl p-4 md:p-5 h-[650px] md:h-[700px] flex flex-col">
+                  {/* Image – increased height */}
                   <div className="overflow-hidden rounded-xl flex-shrink-0">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-[180px] md:h-[200px] object-cover"
+                      className="w-full h-[220px] md:h-[260px] object-cover"
                     />
                   </div>
 
@@ -214,7 +211,7 @@ export default function Services() {
                   </h3>
 
                   {/* Scrollable content area */}
-                   <div
+                  <div
                     className="flex-1 overflow-y-auto mt-2 pr-1 [&::-webkit-scrollbar]:hidden"
                     style={{
                       scrollbarWidth: "none",
@@ -226,7 +223,7 @@ export default function Services() {
                       {service.description}
                     </p>
 
-                    {/* Services sections – grid for multiple sections */}
+                    {/* Services sections */}
                     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                       {service.sections.map((section, idx) => (
                         <div key={idx}>

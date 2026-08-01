@@ -93,7 +93,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="bg-[#08264A] py-16 px-4">
+    <section id="projects" className="bg-[#08264A] py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="flex items-center justify-center gap-4 mb-3">

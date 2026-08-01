@@ -9,41 +9,41 @@ export default function OngoingProjects() {
   const project1 = {
     title: 'Shahjahanpur Toll Plaza',
     description1: 'Successfully dismantled the local MAV transporter nexus, enforced complete tariff collection in accordance with the Concession Agreement, and maintained uninterrupted operations for 7 consecutive years. The project consistently achieved one of the highest daily toll collections while outperforming previous operators.',
-    image: '/images/dummy.png',
+    image: '/images/Shahjahan.png',
     logo: '/images/cmp_logo/NCC_Ltd.png',
   };
 
   const project2 = {
     title: 'Samakhiali Toll Plaza',
     description1: 'Delivered a remarkable 50% increase in toll revenue within just 11 months by eliminating local operational challenges and reducing run-throughs and unauthorized exemptions to client-specified limits. The project has continued to operate successfully for over 8 years with sustained operational excellence.',
-    image: '/images/dummy.png',
+    image: '/images/Samakhiali.png',
     logo: '/images/cmp_logo/Suryapriya.png',
   };
 
   const project3 = {
     title: 'Bhigan Toll Plaza',
     description1: 'Achieved an impressive ₹7 lakh increase in daily revenue within the first month of operations while significantly reducing unauthorized exemptions and improving overall toll collection efficiency.',
-    image: '/images/dummy.png',
+    image: '/images/Bhigan.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
   const project4 = {
     title: 'Panihar & Mudhkheda Toll Plazas',
     description1: 'Successfully initiated toll operations while maintaining unauthorized exemptions consistently below 1.25%, ensuring strict compliance and enhanced revenue protection.',
-    image: '/images/dummy.png',
+    image: '/images/Panihar.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
   const project5 = {
     title: 'Karjan Toll Plaza',
     description1: 'Completely neutralized local and employee MAV interference through a balanced combination of operational discipline, legal intervention, and stakeholder management. The result was substantial revenue enhancement and zero unauthorized exemptions for local commercial vehicles.',
-    image: '/images/dummy.png',
+    image: '/images/Karjan.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
+  const slides = [project1, project2, project3, project4, project5];
 
-  const slides = [project1, project2, project3, project4, project5, ];
-
+  // Auto‑advance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -51,6 +51,7 @@ export default function OngoingProjects() {
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  // Scroll to slide
   useEffect(() => {
     if (containerRef.current) {
       const container = containerRef.current;
@@ -63,17 +64,28 @@ export default function OngoingProjects() {
     }
   }, [currentSlide]);
 
+  // Entrance animation – trigger after a small delay
+  useEffect(() => {
+    const cards = document.querySelectorAll('.card-animate');
+    cards.forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add('card-visible');
+      }, 100 + i * 150); // stagger
+    });
+  }, []);
+
   return (
-    <section id='achievements' className="bg-white px-4 py-4 md:px-4 lg:px-4 lg:py-4">
+    <section id="achievements" className="bg-white px-4 py-4 md:px-4 lg:px-4 lg:py-4">
       <div className="mx-auto max-w-full">
-       <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
-            <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
-            <h2 className="text-[#08264A] text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-bold uppercase">
-              Our Achievements
-            </h2>
-            <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
-          </div> 
-      
+        {/* Heading */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
+          <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
+          <h2 className="text-[#08264A] text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-bold uppercase">
+            Our Achievements
+          </h2>
+          <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
+        </div>
+
         <p className="mx-auto font-bold mt-4 max-w-full text-center text-[10px] leading-[1.35] text-[#3f3f3f] md:text-[14px]">
           Delivering Measurable Results Across India's Highway Infrastructure
         </p>
@@ -84,6 +96,7 @@ export default function OngoingProjects() {
           Through strategic planning, experienced leadership, and disciplined execution, we have consistently helped our clients improve revenue realization, strengthen operational control, and maintain seamless highway operations.
         </p>
 
+        {/* Carousel */}
         <div className="relative mt-6 overflow-hidden">
           <div
             ref={containerRef}
@@ -91,17 +104,22 @@ export default function OngoingProjects() {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {slides.map((slide, index) => (
-              <div key={index} className="md:w-3/5 w-full mr-4 shrink-0 snap-start">
-                <div className="mx-auto rounded-[12px] bg-[#FFF6EB] px-4 py-4 shadow-sm md:px-5 md:py-5">
+              <div
+                key={index}
+                className="md:w-3/5 w-full mr-4 shrink-0 snap-start card-animate"
+              >
+                <div className="mx-auto rounded-[12px] bg-[#FFF6EB] px-4 py-4 shadow-sm md:px-5 md:py-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
                   <div className="flex flex-col gap-5 lg:flex-row lg:gap-2">
-                    <div className="flex h-60px] w-full items-center justify-center overflow-hidden rounded-[14px] bg-[#f7f7f7] md:h-[220px] md:w-full lg:h-[220px] lg:w-[312px]">
+                    {/* Image */}
+                    <div className="flex h-[180px] w-full items-center justify-center overflow-hidden rounded-[14px] bg-[#f7f7f7] md:h-[220px] md:w-full lg:h-[220px] lg:w-[312px]">
                       <img
                         src={slide.image}
                         alt="Landmark Success Stories"
-                        className="h-full w-full object-fill"
+                        className="h-full w-full object-cover"
                       />
                     </div>
 
+                    {/* Content */}
                     <div className="w-full flex-1 pl-2 pt-1">
                       <p className="mt-3 max-w-full text-[10px] leading-[1.4] text-[#555] md:text-[14px]">
                         Landmark Success Stories
@@ -120,6 +138,7 @@ export default function OngoingProjects() {
           </div>
         </div>
 
+        {/* Dots */}
         <div className="mt-4 flex items-center justify-center gap-2">
           {slides.map((_, index) => (
             <button
@@ -133,6 +152,21 @@ export default function OngoingProjects() {
           ))}
         </div>
       </div>
+
+      {/* Custom CSS for animations */}
+      <style>
+        {`
+          .card-animate {
+            opacity: 0;
+            transform: translateY(30px) scale(0.96);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+          }
+          .card-visible {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+          }
+        `}
+      </style>
     </section>
   );
 }

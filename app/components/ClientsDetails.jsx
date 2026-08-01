@@ -16,7 +16,7 @@ export default function ClientsDetails() {
   ];
 
   return (
-    <section id="clients" className="bg-[#FFFFFF] px-4 py-6 md:px-8 lg:px-12">
+    <section id="clients" className="bg-[#FFFFFF] px-4 md:pt-12 pt-4 py-6 md:px-8 lg:px-12">
       <div className="mx-auto max-w-full">
          <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
             <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />

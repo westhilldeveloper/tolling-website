@@ -2,7 +2,7 @@ import { stripImages } from '../data';
 
 export default function ImageStrip() {
   return (
-    <div className='w-full text-center mb-8 sm:mb-10 md:mb-12'>
+    <div className='w-full text-center mb-8 sm:mb-10 md:mb-12 md:py-0 pt-12'>
        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
             <div className="w-6 sm:w-8 md:w-12 h-[1px] bg-[#D9A441]" />
             <h2 className="text-[#08264A] text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold uppercase">
