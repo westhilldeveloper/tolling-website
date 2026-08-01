@@ -36,11 +36,11 @@ export default function Footer() {
 
             {/* Left - Company Name */}
             <div className="text-center md:text-left order-1">
-              <h2 className="text-2xl sm:text-3xl md:text-[28px] lg:text-[32px] font-bold mb-2 md:mb-4">
-                bheema tolling & traffic solutions pvt ltd (BTTS)
+              <h2 className="text-2xl sm:text-2xl md:text-[24px] lg:text-[28px] font-bold mb-2 md:mb-4">
+                Bheema Tolling & Traffic Solutions PVT LTD (BTTS)
               </h2>
               <p className="text-[#D9A441] text-sm sm:text-base md:text-lg">
-                Excellence · Integrity · Growth
+                Our People Are Your Strength
               </p>
             </div>
 
