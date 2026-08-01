@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import OngoingProjects from "./OngoingProjects";
 
@@ -42,14 +42,14 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // -------- Intersection Observer for scroll animations --------
+  // -------- Intersection Observer (uses animate-on-scroll / is-visible) --------
   useEffect(() => {
-    const elements = document.querySelectorAll(".animate-section");
+    const elements = document.querySelectorAll(".animate-on-scroll");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("section-visible");
+            entry.target.classList.add("is-visible");
           }
         });
       },
@@ -120,10 +120,10 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* ===== INTRODUCTION SECTION (animated) ===== */}
+      {/* ===== INTRODUCTION (animate-on-scroll) ===== */}
       <section
         id="introduction"
-        className="animate-section bg-white py-4 md:py-4 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        className="animate-on-scroll bg-white py-4 md:py-4"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="prose prose-lg mx-auto text-justify text-sm md:text-md text-gray-700 leading-relaxed space-y-4">
@@ -137,13 +137,13 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* ===== ONGOING PROJECTS (animated) ===== */}
-      <div className="animate-section opacity-0 translate-y-8 transition-all duration-700 delay-100 ease-out">
+      {/* ===== ONGOING PROJECTS (animate-on-scroll) ===== */}
+      <div className="animate-on-scroll">
         <OngoingProjects />
       </div>
 
-      {/* ===== OPERATIONAL EXCELLENCE (animated) ===== */}
-      <section className="animate-section bg-white py-4 md:py-0 opacity-0 translate-y-8 transition-all duration-700 delay-200 ease-out">
+      {/* ===== OPERATIONAL EXCELLENCE (animate-on-scroll) ===== */}
+      <section className="animate-on-scroll bg-white py-4 md:py-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-1 gap-10 md:gap-12 lg:gap-16">
             <div>
@@ -169,8 +169,8 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* ===== WHY CHOOSE BTTS (animated) ===== */}
-      <section className="animate-section bg-white md:pb-12 pb-18  py-4 md:py-4 opacity-0 translate-y-8 transition-all duration-700 delay-300 ease-out">
+      {/* ===== WHY CHOOSE BTTS (animate-on-scroll) ===== */}
+      <section className="animate-on-scroll bg-white py-4 md:py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-1 gap-10 md:gap-12 lg:gap-16">
             <div>
@@ -190,15 +190,15 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Custom CSS for the animation – added as a style tag */}
+      {/* CSS – same as About page, can also be placed in global CSS */}
       <style>{`
-        .animate-section {
+        .animate-on-scroll {
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                       transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .section-visible {
+        .animate-on-scroll.is-visible {
           opacity: 1 !important;
           transform: translateY(0) !important;
         }
