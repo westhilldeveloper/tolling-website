@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import OngoingProjects from "./OngoingProjects";
 
@@ -42,9 +42,27 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // -------- Intersection Observer for scroll animations --------
+  useEffect(() => {
+    const elements = document.querySelectorAll(".animate-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("section-visible");
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      {/* Hero Slider – now with only headline, subtitle, and button */}
+      {/* Hero Slider */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
         {/* Image Slider */}
         <div className="absolute inset-0 z-0">
@@ -67,10 +85,8 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/30 z-0" />
 
-        {/* Dot Indicators */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
           {images.map((_, index) => (
             <button
@@ -86,7 +102,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Hero Content – reduced to essentials */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12 py-12 lg:py-0">
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] text-[#C8A34B] font-bold mb-4 leading-tight">
@@ -95,7 +110,6 @@ export default function Hero() {
             <h2 className="text-lg sm:text-xl md:text-[32px] text-white mb-4 font-medium">
               India's Trusted Partner in Toll Management, Highway O&M & Security Solutions
             </h2>
-            {/* Short placeholder – optional, you can remove this line */}
             <p className="text-gray-200 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 text-justify lg:text-left mb-6 leading-relaxed">
               Delivering operational excellence and safety across India's highways for over 16 years.
             </p>
@@ -106,9 +120,12 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* ========== NEW INTRODUCTION SECTION ========== */}
-      <section id="introduction" className="bg-white py-4 md:py-4">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6">
+      {/* ===== INTRODUCTION SECTION (animated) ===== */}
+      <section
+        id="introduction"
+        className="animate-section bg-white py-4 md:py-4 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="prose prose-lg mx-auto text-justify text-sm md:text-md text-gray-700 leading-relaxed space-y-4">
             <p>
               Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS) is one of India's leading providers of integrated Toll Management, Highway Operations & Maintenance (O&M), Traffic Management, Incident Response, Road Maintenance, and Professional Manpower Solutions. With nearly 16 years of industry experience, BTTS has built a strong reputation for delivering reliable, efficient, and compliant operational services to national highways, expressways, and large-scale infrastructure projects. Our expertise lies in maximizing toll revenue, ensuring uninterrupted operations, maintaining the highest safety standards, and providing customized solutions that meet the evolving needs of highway concessionaires and government authorities.
@@ -120,11 +137,13 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Ongoing Projects */}
-      <OngoingProjects />
+      {/* ===== ONGOING PROJECTS (animated) ===== */}
+      <div className="animate-section opacity-0 translate-y-8 transition-all duration-700 delay-100 ease-out">
+        <OngoingProjects />
+      </div>
 
-      {/* Operational Excellence & Why Choose BTTS */}
-      <section className="bg-white py-4 md:py-0">
+      {/* ===== OPERATIONAL EXCELLENCE (animated) ===== */}
+      <section className="animate-section bg-white py-4 md:py-0 opacity-0 translate-y-8 transition-all duration-700 delay-200 ease-out">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-1 gap-10 md:gap-12 lg:gap-16">
             <div>
@@ -150,7 +169,8 @@ export default function Hero() {
         </div>
       </section>
 
-      <section className="bg-white py-4 md:py-4">
+      {/* ===== WHY CHOOSE BTTS (animated) ===== */}
+      <section className="animate-section bg-white md:pb-12 pb-18  py-4 md:py-4 opacity-0 translate-y-8 transition-all duration-700 delay-300 ease-out">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-1 gap-10 md:gap-12 lg:gap-16">
             <div>
@@ -169,6 +189,20 @@ export default function Hero() {
           </div>
         </div>
       </section>
+
+      {/* Custom CSS for the animation – added as a style tag */}
+      <style>{`
+        .animate-section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .section-visible {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </>
   );
 }
