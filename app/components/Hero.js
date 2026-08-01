@@ -42,7 +42,7 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // -------- Intersection Observer (uses animate-on-scroll / is-visible) --------
+  // Intersection Observer – uses global .animate-on-scroll class
   useEffect(() => {
     const elements = document.querySelectorAll(".animate-on-scroll");
     const observer = new IntersectionObserver(
@@ -190,19 +190,8 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* CSS – same as About page, can also be placed in global CSS */}
-      <style>{`
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .animate-on-scroll.is-visible {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
-        }
-      `}</style>
+    
+      
     </>
   );
 }
