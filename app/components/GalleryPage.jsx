@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
+import HeroHead from './HeroHead';
 
 export default function GalleryPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,6 +33,9 @@ export default function GalleryPage() {
   }, [slides.length]);
 
   return (
+    <>
+    <HeroHead/>
+  
     <section id='gallery' className="bg-[#FFFFFF] px-4 md:pt-12 pt-4 py-8 md:px-8 lg:px-12 lg:py-12">
       <div className="mx-auto max-w-full">
        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-3 sm:mb-4">
@@ -143,5 +147,6 @@ export default function GalleryPage() {
         </div>
       </div>
     </section>
+      </>
   );
 }

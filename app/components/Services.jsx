@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CheckSquare } from "lucide-react";
+import HeroHead from "./HeroHead";
 
 export default function Services() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -162,6 +163,8 @@ export default function Services() {
   }, [currentSlide]);
 
   return (
+    <>
+    <HeroHead/>
     <section id="services" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         {/* Heading */}
@@ -267,5 +270,6 @@ export default function Services() {
         </div>
       </div>
     </section>
+    </>
   );
 }

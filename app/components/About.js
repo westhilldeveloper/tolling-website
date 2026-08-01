@@ -1,5 +1,7 @@
 import Image from "next/image";
 import LeadershipPage from "./LeadershipPage";
+import Hero from "./Hero";
+import HeroHead from "./HeroHead";
 
 export default function About() {
   const missionPoints = [
@@ -9,6 +11,8 @@ export default function About() {
   ];
 
   return (
+  <>
+  <HeroHead/>
     <section id="about" className="bg-[#f5f5f5] py-12 sm:py-16 md:py-12">
       <div className="max-w-8xl mx-auto px-4 sm:px-6">
         {/* About Heading */}
@@ -79,5 +83,6 @@ export default function About() {
       </div>
       <LeadershipPage/>
     </section>
+    </>
   );
 }

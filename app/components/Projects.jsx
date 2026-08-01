@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import HeroHead from "./HeroHead";
 
 export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -93,6 +94,8 @@ export default function Projects() {
   };
 
   return (
+    <>
+    <HeroHead/>
     <section id="projects" className="bg-[#08264A] py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
@@ -315,5 +318,6 @@ export default function Projects() {
         </div>
       </div>
     </section>
+    </>
   );
 }
