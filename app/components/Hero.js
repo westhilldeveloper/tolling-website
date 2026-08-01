@@ -107,7 +107,7 @@ export default function Hero() {
       </section>
 
       {/* ========== NEW INTRODUCTION SECTION ========== */}
-      <section id="introduction" className="bg-white py-12 md:py-16">
+      <section id="introduction" className="bg-white py-4 md:py-4">
         <div className="max-w-8xl mx-auto px-4 sm:px-6">
           <div className="prose prose-lg mx-auto text-justify text-sm md:text-md text-gray-700 leading-relaxed space-y-4">
             <p>
@@ -150,11 +150,11 @@ export default function Hero() {
         </div>
       </section>
 
-      <section className="bg-white py-4 md:py-0">
+      <section className="bg-white py-4 md:py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-1 gap-10 md:gap-12 lg:gap-16">
             <div>
-              <h4 className="text-[#08264A] text-md sm:text-2xl mt:4 md:mt-8 font-semibold uppercase mb-4">
+              <h4 className="text-[#08264A] text-md sm:text-2xl mt:4 md:mt-4 font-semibold uppercase mb-4">
                 Why Leading Organizations Choose BTTS
               </h4>
               <ul className="space-y-2 text-gray-700 text-sm md:text-base">
