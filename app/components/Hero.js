@@ -85,7 +85,14 @@ export default function Hero() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-black/30 z-0" />
+        <div 
+  className="absolute inset-0 z-0" 
+  style={{
+    background: 'black',
+    maskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
+    WebkitMaskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
+  }}
+/>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
           {images.map((_, index) => (
