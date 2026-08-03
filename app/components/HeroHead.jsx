@@ -99,9 +99,14 @@ export default function HeroHead() {
             <p className="text-gray-200 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 text-justify lg:text-left mb-6 leading-relaxed">
               Delivering operational excellence and safety across India's highways for over 16 years.
             </p>
-            <button className="bg-[#D9A441] px-6 py-2 font-bold text-white rounded-md hover:bg-[#c8933a] transition">
-              Visit Bheema Group
-            </button>
+            <a
+  href="https://master.d1iftgiv7z8p45.amplifyapp.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-[#D9A441] px-6 py-2 font-bold text-white rounded-md hover:bg-[#c8933a] transition inline-block"
+>
+  Visit Bheema Group
+</a>
           </div>
         </div>
       </section>
