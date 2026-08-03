@@ -85,10 +85,10 @@ export default function Hero() {
           ))}
         </div>
 
-        <div 
-  className="absolute inset-0 z-0" 
+   <div
+  className="absolute inset-0 z-0"
   style={{
-    background: 'black',
+    background: '#010f20', // or #08264A, #041E3D, etc.
     maskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
     WebkitMaskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
   }}
