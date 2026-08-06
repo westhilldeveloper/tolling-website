@@ -2,40 +2,41 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Quote } from 'lucide-react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/effect-cards";
 
 // Card component – with an optional `delay` prop for staggered animation
-const LeadershipCard = ({ service, delay = 0 }) => {
+const LeadershipCard = ({ service }) => {
   const initials = service.title
-    .split(' ')
-    .map(word => word[0])
-    .join('')
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
     .slice(0, 2)
     .toUpperCase();
 
   return (
-    <div
-      className="flex w-full max-w-sm flex-col rounded-2xl bg-white p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:max-w-xs md:max-w-sm"
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-[#D9A441]" />
-      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#041E3D] text-xl font-bold text-white shadow-inner">
+    <div className="bg-white rounded-3xl p-6 shadow-xl min-h-[420px] flex flex-col text-center">
+      <div className="mx-auto w-16 h-16 rounded-full bg-[#041E3D] text-white flex items-center justify-center text-xl font-bold">
         {initials}
       </div>
-      <h3 className="text-xl font-bold text-[#041E3D] sm:text-2xl">
+
+      <h3 className="mt-5 text-xl font-bold text-[#041E3D]">
         {service.title}
       </h3>
-      <p className="mt-1 text-sm font-medium text-[#D9A441] sm:text-base">
+
+      <p className="text-[#D9A441] font-medium mt-1">
         {service.designation}
       </p>
-      <div className="mx-auto my-4 h-px w-12 bg-gray-200" />
-      <p className="flex-1 text-sm leading-relaxed text-gray-600 sm:text-base">
+
+      <p className="mt-4 text-gray-600 text-sm leading-7">
         {service.description}
       </p>
-      <Quote size={20} className="mx-auto mt-4 text-[#D9A441]/40" />
     </div>
   );
 };
-
 export default function Leadership({ slides = [] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
@@ -98,24 +99,20 @@ export default function Leadership({ slides = [] }) {
 
       {/* -------- MOBILE VIEW (static, each card animated) -------- */}
       <div className="mt-10 sm:hidden">
-        <div className="grid grid-cols-1 gap-6 justify-items-center">
-          {slides.map((slide, slideIndex) =>
-            slide.map((service, idx) => {
-              // Calculate a unique index for staggered delay
-              const cardIndex = slideIndex * slide.length + idx;
-              const delay = cardIndex * 150; // 150ms between each card
-              return (
-                <div
-                  key={`${slideIndex}-${idx}`}
-                  className="animate-on-scroll w-full max-w-sm"
-                  style={{ transitionDelay: `${delay}ms` }}
-                >
-                  <LeadershipCard service={service} />
-                </div>
-              );
-            })
-          )}
-        </div>
+        <div className="sm:hidden mt-10">
+  <Swiper
+    effect={"cards"}
+    grabCursor={true}
+    modules={[EffectCards]}
+    className="w-full max-w-sm mx-auto"
+  >
+    {slides.flat().map((service, index) => (
+      <SwiperSlide key={index}>
+        <LeadershipCard service={service} />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
       </div>
 
       {/* -------- DESKTOP/TABLET VIEW (carousel with peek) -------- */}
