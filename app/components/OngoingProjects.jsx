@@ -5,53 +5,99 @@ import { useEffect, useState, useRef } from 'react';
 export default function OngoingProjects() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
+  const carouselRef = useRef(null);
+  const intervalRef = useRef(null);
+  const timeoutRef = useRef(null);
 
+  // ----- Project data -----
   const project1 = {
     title: 'Shahjahanpur Toll Plaza',
-    description1: 'Successfully dismantled the local MAV transporter nexus, enforced complete tariff collection in accordance with the Concession Agreement, and maintained uninterrupted operations for 7 consecutive years. The project consistently achieved one of the highest daily toll collections while outperforming previous operators.',
+    description1:
+      'Successfully dismantled the local MAV transporter nexus, enforced complete tariff collection in accordance with the Concession Agreement, and maintained uninterrupted operations for 7 consecutive years. The project consistently achieved one of the highest daily toll collections while outperforming previous operators.',
     image: '/images/Shahjahan.png',
     logo: '/images/cmp_logo/NCC_Ltd.png',
   };
 
   const project2 = {
     title: 'Samakhiali Toll Plaza',
-    description1: 'Delivered a remarkable 50% increase in toll revenue within just 11 months by eliminating local operational challenges and reducing run-throughs and unauthorized exemptions to client-specified limits. The project has continued to operate successfully for over 8 years with sustained operational excellence.',
+    description1:
+      'Delivered a remarkable 50% increase in toll revenue within just 11 months by eliminating local operational challenges and reducing run-throughs and unauthorized exemptions to client-specified limits. The project has continued to operate successfully for over 8 years with sustained operational excellence.',
     image: '/images/Samakhiali.png',
     logo: '/images/cmp_logo/Suryapriya.png',
   };
 
   const project3 = {
     title: 'Bhigan Toll Plaza',
-    description1: 'Achieved an impressive ₹7 lakh increase in daily revenue within the first month of operations while significantly reducing unauthorized exemptions and improving overall toll collection efficiency.',
+    description1:
+      'Achieved an impressive ₹7 lakh increase in daily revenue within the first month of operations while significantly reducing unauthorized exemptions and improving overall toll collection efficiency.',
     image: '/images/Bhigan.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
   const project4 = {
     title: 'Panihar & Mudhkheda Toll Plazas',
-    description1: 'Successfully initiated toll operations while maintaining unauthorized exemptions consistently below 1.25%, ensuring strict compliance and enhanced revenue protection.',
+    description1:
+      'Successfully initiated toll operations while maintaining unauthorized exemptions consistently below 1.25%, ensuring strict compliance and enhanced revenue protection.',
     image: '/images/Panihar.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
   const project5 = {
     title: 'Karjan Toll Plaza',
-    description1: 'Completely neutralized local and employee MAV interference through a balanced combination of operational discipline, legal intervention, and stakeholder management. The result was substantial revenue enhancement and zero unauthorized exemptions for local commercial vehicles.',
+    description1:
+      'Completely neutralized local and employee MAV interference through a balanced combination of operational discipline, legal intervention, and stakeholder management. The result was substantial revenue enhancement and zero unauthorized exemptions for local commercial vehicles.',
     image: '/images/Karjan.png',
     logo: '/images/cmp_logo/KEC_Int.png',
   };
 
   const slides = [project1, project2, project3, project4, project5];
 
-  // Auto‑advance
-  useEffect(() => {
-    const interval = setInterval(() => {
+  // ----- Auto‑play functions -----
+  const startAutoPlay = () => {
+    stopAutoPlay(); // clear any existing interval
+    intervalRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
+    }, 10000); // 10 seconds
+  };
 
-  // Scroll to slide
+  const stopAutoPlay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  const restartAutoPlayAfterDelay = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      startAutoPlay();
+    }, 2000); // 2 second delay after interaction ends
+  };
+
+  // Pause / Resume handlers
+  const handlePause = () => {
+    stopAutoPlay();
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  const handleResume = () => {
+    restartAutoPlayAfterDelay();
+  };
+
+  // Initial auto‑play & cleanup
+  useEffect(() => {
+    startAutoPlay();
+    return () => {
+      stopAutoPlay();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Scroll to current slide
   useEffect(() => {
     if (containerRef.current) {
       const container = containerRef.current;
@@ -64,15 +110,34 @@ export default function OngoingProjects() {
     }
   }, [currentSlide]);
 
-  // Entrance animation – trigger after a small delay
+  // Entrance animation
   useEffect(() => {
     const cards = document.querySelectorAll('.card-animate');
     cards.forEach((card, i) => {
       setTimeout(() => {
         card.classList.add('card-visible');
-      }, 100 + i * 150); // stagger
+      }, 100 + i * 150);
     });
   }, []);
+
+  // Navigation handlers
+  const goToPrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    handlePause();
+    restartAutoPlayAfterDelay();
+  };
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    handlePause();
+    restartAutoPlayAfterDelay();
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    handlePause();
+    restartAutoPlayAfterDelay();
+  };
 
   return (
     <section id="achievements" className="bg-white px-4 py-4 md:px-4 lg:px-4 lg:py-4">
@@ -90,14 +155,28 @@ export default function OngoingProjects() {
           Delivering Measurable Results Across India's Highway Infrastructure
         </p>
         <p className="mx-auto mt-1 max-w-full text-center text-[10px] leading-[1.35] text-[#3f3f3f] md:text-[14px]">
-          For nearly 16 years, Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS) has successfully managed some of India's most challenging toll plazas and highway infrastructure projects. Our expertise extends beyond routine toll operations, we specialize in maximizing revenue, eliminating operational inefficiencies, maintaining uninterrupted services, and delivering exceptional operational performance even in high-pressure environments.
+          For nearly 16 years, Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS) has successfully
+          managed some of India's most challenging toll plazas and highway infrastructure projects.
+          Our expertise extends beyond routine toll operations, we specialize in maximizing revenue,
+          eliminating operational inefficiencies, maintaining uninterrupted services, and delivering
+          exceptional operational performance even in high-pressure environments.
         </p>
         <p className="mx-auto mt-4 max-w-full text-center text-[10px] leading-[1.35] text-[#3f3f3f] md:text-[14px]">
-          Through strategic planning, experienced leadership, and disciplined execution, we have consistently helped our clients improve revenue realization, strengthen operational control, and maintain seamless highway operations.
+          Through strategic planning, experienced leadership, and disciplined execution, we have
+          consistently helped our clients improve revenue realization, strengthen operational
+          control, and maintain seamless highway operations.
         </p>
 
-        {/* Carousel */}
-        <div className="relative mt-6 overflow-hidden">
+        {/* Carousel with pause on hover/touch */}
+        <div
+          ref={carouselRef}
+          className="relative mt-6"
+          onMouseEnter={handlePause}
+          onMouseLeave={handleResume}
+          onTouchStart={handlePause}
+          onTouchEnd={handleResume}
+        >
+          {/* Scroll container */}
           <div
             ref={containerRef}
             className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
@@ -136,6 +215,50 @@ export default function OngoingProjects() {
               </div>
             ))}
           </div>
+
+          {/* Left Arrow */}
+          <button
+            onClick={goToPrev}
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md backdrop-blur-sm transition hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#D9A441] md:left-4 md:p-3"
+            aria-label="Previous slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[#0A2342]"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={goToNext}
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-md backdrop-blur-sm transition hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#D9A441] md:right-4 md:p-3"
+            aria-label="Next slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-[#0A2342]"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
 
         {/* Dots */}
@@ -143,17 +266,17 @@ export default function OngoingProjects() {
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => goToSlide(index)}
               className={`h-3.5 w-3.5 rounded-full transition-all ${
                 currentSlide === index ? 'bg-[#8b6335]' : 'bg-[#f0ece6]'
               }`}
-              aria-label={`Go to ongoing project slide ${index + 1}`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
+      {/* Custom CSS for entrance animations */}
       <style>
         {`
           .card-animate {

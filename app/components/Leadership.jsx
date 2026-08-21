@@ -18,7 +18,7 @@ const LeadershipCard = ({ service }) => {
     .toUpperCase();
 
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-xl min-h-[420px] flex flex-col text-center">
+    <div className="bg-white rounded-3xl p-3 shadow-xl min-h-[420px] flex flex-col text-center">
       <div className="mx-auto w-16 h-16 rounded-full bg-[#041E3D] text-white flex items-center justify-center text-xl font-bold">
         {initials}
       </div>

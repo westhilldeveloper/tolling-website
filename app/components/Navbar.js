@@ -19,6 +19,7 @@ export default function Navbar() {
     { name: "PROJECTS", route: "/projects" },
     { name: "CLIENTS", route: "/clients" },
     { name: "GALLERY", route: "/gallery" },
+    { name: "CONTACT", route: "/contact" },
   ];
 
   // Helper to check if current route matches (exact match)
