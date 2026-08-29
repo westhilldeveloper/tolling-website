@@ -42,7 +42,7 @@ export default function About() {
 
   return (
     <>
-      <HeroHead />
+      {/* <HeroHead /> */}
       <section id="about" className="bg-[#f5f5f5] py-12 sm:py-16 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* ===== About Heading (animated) ===== */}

@@ -221,7 +221,7 @@ export default function Services() {
 
   return (
     <>
-      <HeroHead />
+      {/* <HeroHead /> */}
       <section id="services" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           {/* Heading */}

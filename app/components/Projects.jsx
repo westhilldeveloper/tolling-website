@@ -95,7 +95,7 @@ export default function Projects() {
 
   return (
     <>
-    <HeroHead/>
+    {/* <HeroHead/> */}
     <section id="projects" className="bg-[#08264A] py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}

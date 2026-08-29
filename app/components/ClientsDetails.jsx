@@ -19,7 +19,7 @@ export default function ClientsDetails() {
 
   return (
     <>
-    <HeroHead/>
+    {/* <HeroHead/> */}
     
     <section id="clients" className="bg-[#FFFFFF] px-4 md:pt-12 pt-4 py-6 md:px-8 lg:px-12">
       <div className="mx-auto max-w-full">

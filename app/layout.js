@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import StickyButton from "./components/StickyButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <StickyButton/>
         <Footer />
       </body>
     </html>
