@@ -4,12 +4,12 @@ import Image from "next/image";
 
 export default function StickyButton() {
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50">
       <a
         href="https://www.bheemagroup.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center h-12 bg-black rounded-full shadow-lg overflow-hidden border-2 border-[#D9A441] transition-all duration-300 hover:bg-[#D9A441] hover:animate-none animate-gentle-pulse"
+        className="group flex items-center h-12 bg-[#08264A] rounded-full shadow-lg overflow-hidden border-2 border-[#D9A441] transition-all duration-300 hover:bg-[#D9A441] hover:animate-none animate-gentle-pulse"
       >
         {/* Logo container – shrinks to 0 on hover */}
         <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center transition-all duration-300 overflow-hidden group-hover:w-0">
