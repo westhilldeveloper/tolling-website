@@ -98,22 +98,24 @@ export default function Leadership({ slides = [] }) {
       </p>
 
       {/* -------- MOBILE VIEW (static, each card animated) -------- */}
-      <div className="mt-10 sm:hidden">
-        <div className="sm:hidden mt-10">
-  <Swiper
-    effect={"cards"}
-    grabCursor={true}
-    modules={[EffectCards]}
-    className="w-full max-w-sm mx-auto"
-  >
-    {slides.flat().map((service, index) => (
-      <SwiperSlide key={index}>
-        <LeadershipCard service={service} />
-      </SwiperSlide>
-    ))}
-  </Swiper>
+      {/* -------- MOBILE VIEW (Swiper with Cards effect) -------- */}
+<div className="mt-10 sm:hidden overflow-hidden">
+  <div className="w-full max-w-xs mx-auto">
+    <Swiper
+      effect="cards"
+      grabCursor={true}
+      modules={[EffectCards]}
+      className="w-full"
+      style={{ padding: 0 }}
+    >
+      {slides.flat().map((service, index) => (
+        <SwiperSlide key={index} style={{ width: '100%', margin: 0 }}>
+          <LeadershipCard service={service} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
 </div>
-      </div>
 
       {/* -------- DESKTOP/TABLET VIEW (carousel with peek) -------- */}
       <div className="relative mt-10 hidden sm:block">
