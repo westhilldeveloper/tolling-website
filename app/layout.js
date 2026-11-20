@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import StickyButton from "./components/StickyButton";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,22 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: '#08264A',
+              color: '#fff',
+              border: '1px solid #D9A441',
+            },
+            success: {
+              iconTheme: {
+                primary: '#D9A441',
+                secondary: '#fff',
+              },
+            },
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <StickyButton/>

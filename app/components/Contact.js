@@ -70,7 +70,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-[#f5f5f5] py-12 md:py-16 lg:py-24">
+    <section id="contact" className="bg-[#f5f5f5] py-12 md:py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start lg:items-center">
         {/* Left – Improved responsiveness */}
         <div className="text-center lg:text-left">

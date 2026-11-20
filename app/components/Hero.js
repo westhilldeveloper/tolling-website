@@ -6,13 +6,13 @@ import OngoingProjects from "./OngoingProjects";
 
 export default function Hero() {
    const images = [
-    "/images/h1.jpeg",
-    "/images/h2.jpeg",
-    "/images/h5.jpeg",
-    "/images/h4.jpeg",
-    "/images/h6.jpeg",
-    "/images/h7.jpeg",
-    "/images/h8.jpeg",
+    "/images/h1.png",
+    "/images/h2.png",
+    "/images/h3.png",
+    "/images/h4.png",
+    "/images/h5.png",
+    "/images/h6.png",
+    "/images/h7.png",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -64,55 +64,61 @@ export default function Hero() {
   return (
     <>
       {/* Hero Slider */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      <section id="home" className="relative w-full overflow-hidden bg-[#010f20] flex items-center h-[52vh] sm:h-[65vh] lg:min-h-[90vh]">
+ 
         {/* Image Slider */}
         <div className="absolute inset-0 z-0">
-          {images.map((src, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <Image
-                src={src}
-                alt={`Hero Background ${index + 1}`}
-                fill
-                className="object-cover"
-                priority={index === 0}
-                sizes="100vw"
-              />
-            </div>
-          ))}
-        </div>
+    {images.map((src, index) => (
+      <div
+        key={index}
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          index === currentIndex ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {/* 1. BLURRED BACKGROUND - fills blank space */}
+        <Image
+          src={src}
+          alt=""
+          fill
+          className="object-cover scale-125 blur-sm brightness-[0.6] opacity-99"
+          sizes="100vw"
+          aria-hidden="true"
+        />
 
-   <div
-  className="absolute inset-0 z-0"
-  style={{
-    background: '#010f20', // or #08264A, #041E3D, etc.
-    maskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
-    WebkitMaskImage: 'radial-gradient(circle at top right, transparent 0%, black 100%)',
-  }}
-/>
+        {/* 2. MAIN IMAGE - full image, no cropping on mobile */}
+        <Image
+          src={src}
+          alt={`Hero Background ${index + 1}`}
+          fill
+          className="object-contain lg:object-cover"
+          priority={index === 0}
+          sizes="100vw"
+        />
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-[#D9A441] w-8"
-                  : "bg-white/50 hover:bg-white/80"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+        <div className="absolute inset-0 bg-black/10 lg:bg-black/20" />
+      </div>
+    ))}
+  </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12 py-12 lg:py-0">
-          <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] text-[#C8A34B] font-bold mb-4 leading-tight">
+  {/* Dots */}
+  <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+    {images.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentIndex(index)}
+        className={`h-2.5 rounded-full transition-all duration-300 ${
+          index === currentIndex
+            ? "bg-[#D9A441] w-8"
+            : "bg-white/60 hover:bg-white w-2.5"
+        }`}
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+ </section>
+        {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12 py-12 lg:py-0"> */}
+          {/* <div className=" fixed left-4 top-[90vx] text-center lg:text-left"> */}
+            {/* <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] text-[#C8A34B] font-bold mb-4 leading-tight">
               Bheema Tolling & Traffic <br /> Solution Pvt. Ltd.
             </h1>
             <h2 className="text-lg sm:text-xl md:text-[32px] text-white mb-4 font-medium">
@@ -120,18 +126,18 @@ export default function Hero() {
             </h2>
             <p className="text-gray-200 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 text-justify lg:text-left mb-6 leading-relaxed">
               Delivering operational excellence and safety across India's highways for over 16 years.
-            </p>
-           <a
+            </p> */}
+           {/* <a
   href="https://www.bheemagroup.com"
   target="_blank"
   rel="noopener noreferrer"
   className="bg-[#D9A441] px-6 py-2 font-bold text-white rounded-md hover:bg-[#c8933a] transition inline-block"
 >
   Visit Bheema Group
-</a>
-          </div>
-        </div>
-      </section>
+</a> */}
+          {/* </div> */}
+        {/* </div> */}
+     
 
       {/* ===== INTRODUCTION (animate-on-scroll) ===== */}
       <section
