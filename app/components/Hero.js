@@ -64,7 +64,7 @@ export default function Hero() {
   return (
     <>
       {/* Hero Slider - FINAL FIXED - No Black Shade, No Extra Background */}
-      <section id="home" className="relative mt-22 w-full overflow-hidden bg-white">
+      <section id="home" className="relative md:mt-0 mt-22 w-full overflow-hidden bg-white">
         {/* Image Slider - Height follows image exactly */}
         <div className="relative w-full">
           {images.map((src, index) => (
