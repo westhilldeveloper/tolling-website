@@ -80,9 +80,9 @@ export default function Hero() {
           src={src}
           alt=""
           fill
-          className="object-cover scale-125 blur-sm brightness-[0.6] opacity-99"
+          className="object-cover scale-125 blur-xs brightness-[1] opacity-100"
           sizes="100vw"
-          aria-hidden="true"
+          aria-hidden="false"
         />
 
         {/* 2. MAIN IMAGE - full image, no cropping on mobile */}
