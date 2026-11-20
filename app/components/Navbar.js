@@ -55,39 +55,7 @@ export default function Navbar() {
       
      
 {/* ===== TOP UTILITY BAR - Slanted Ribbon - FORCED WITH INLINE STYLE ===== */}
- <div className="hidden lg:block" style={{ background: "transparent" }}>
-        <div
-          className="bg-white text-[#0A1628] relative"
-          style={{
-            marginLeft: "160px",
-            clipPath: "polygon(60px 0, 100% 0, 100% 100%, 0 100%)",
-          }}
-        >
-          {/* Gold line on slanted edge */}
-          <div
-            className="absolute top-0 bottom-0 w-[3px] bg-[#B08D57]"
-            style={{
-              left: "28px",
-              transform: "skewX(-48deg)",
-              transformOrigin: "top",
-            }}
-          />
-          <div className="max-w-7xl mx-auto px-6 pl-16 h-9 flex items-center justify-between text-[11px] tracking-[0.08em] font-medium">
-            <div className="flex items-center gap-6">
-              <span className="flex items-center gap-2">
-                <Phone size={12} className="text-[#B08D57]" /> 011-47083993
-              </span>
-              <span className="flex items-center gap-2">
-                <Mail size={12} className="text-[#B08D57]" /> info@bheemagroup.com
-              </span>
-            </div>
-            <div className="flex items-center gap-2 pr-2">
-              <MapPin size={12} className="text-[#B08D57]" />
-              <span>India | Toll Management & Highway O&M</span>
-            </div>
-          </div>
-        </div>
-      </div>
+ 
 
     
       {/* ===== MAIN NAVBAR ===== */}
