@@ -5,7 +5,7 @@ import Image from "next/image";
 import OngoingProjects from "./OngoingProjects";
 
 export default function Hero() {
-   const images = [
+  const images = [
     "/images/h1.png",
     "/images/h2.png",
     "/images/h3.png",
@@ -63,81 +63,47 @@ export default function Hero() {
 
   return (
     <>
-      {/* Hero Slider */}
-      <section id="home" className="relative w-full overflow-hidden bg-[#010f20] flex items-center h-[52vh] sm:h-[65vh] lg:min-h-[90vh]">
- 
-        {/* Image Slider */}
-        <div className="absolute inset-0 z-0">
-    {images.map((src, index) => (
-      <div
-        key={index}
-        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-          index === currentIndex ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {/* 1. BLURRED BACKGROUND - fills blank space */}
-        <Image
-          src={src}
-          alt=""
-          fill
-          className="object-cover scale-125 blur-xs brightness-[1] opacity-100"
-          sizes="100vw"
-          aria-hidden="false"
-        />
+      {/* Hero Slider - FINAL FIXED - No Black Shade, No Extra Background */}
+      <section id="home" className="relative mt-22 w-full overflow-hidden bg-white">
+        {/* Image Slider - Height follows image exactly */}
+        <div className="relative w-full">
+          {images.map((src, index) => (
+            <div
+              key={index}
+              className={`relative w-full transition-opacity duration-1000 ease-in-out ${
+                index === currentIndex ? "block opacity-100" : "hidden opacity-0"
+              }`}
+            >
+              {/* MAIN IMAGE ONLY - No blurred background, No overlay */}
+              <Image
+                src={src}
+                alt={`Hero Background ${index + 1}`}
+                width={1920}
+                height={1080}
+                className="w-full h-auto block object-cover"
+                priority={index === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+        </div>
 
-        {/* 2. MAIN IMAGE - full image, no cropping on mobile */}
-        <Image
-          src={src}
-          alt={`Hero Background ${index + 1}`}
-          fill
-          className="object-contain lg:object-cover"
-          priority={index === 0}
-          sizes="100vw"
-        />
-
-        <div className="absolute inset-0 bg-black/10 lg:bg-black/20" />
-      </div>
-    ))}
-  </div>
-
-  {/* Dots */}
-  <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-    {images.map((_, index) => (
-      <button
-        key={index}
-        onClick={() => setCurrentIndex(index)}
-        className={`h-2.5 rounded-full transition-all duration-300 ${
-          index === currentIndex
-            ? "bg-[#D9A441] w-8"
-            : "bg-white/60 hover:bg-white w-2.5"
-        }`}
-        aria-label={`Go to slide ${index + 1}`}
-      />
-    ))}
-  </div>
- </section>
-        {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12 py-12 lg:py-0"> */}
-          {/* <div className=" fixed left-4 top-[90vx] text-center lg:text-left"> */}
-            {/* <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] text-[#C8A34B] font-bold mb-4 leading-tight">
-              Bheema Tolling & Traffic <br /> Solution Pvt. Ltd.
-            </h1>
-            <h2 className="text-lg sm:text-xl md:text-[32px] text-white mb-4 font-medium">
-              India's Trusted Partner in Toll Management, Highway O&M & Security Solutions
-            </h2>
-            <p className="text-gray-200 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 text-justify lg:text-left mb-6 leading-relaxed">
-              Delivering operational excellence and safety across India's highways for over 16 years.
-            </p> */}
-           {/* <a
-  href="https://www.bheemagroup.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="bg-[#D9A441] px-6 py-2 font-bold text-white rounded-md hover:bg-[#c8933a] transition inline-block"
->
-  Visit Bheema Group
-</a> */}
-          {/* </div> */}
-        {/* </div> */}
-     
+        {/* Dots - Only on Desktop, Hidden on Mobile */}
+        <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-[#D9A441] w-8"
+                  : "bg-white/60 hover:bg-white w-2.5"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </section>
 
       {/* ===== INTRODUCTION (animate-on-scroll) ===== */}
       <section
@@ -147,10 +113,10 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="prose prose-lg mx-auto text-justify text-sm md:text-md text-gray-700 leading-relaxed space-y-4">
             <p>
-              Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS) is one of India's leading providers of integrated Toll Management, Highway Operations & Maintenance (O&M), Traffic Management, Incident Response, Road Maintenance, and Professional Manpower Solutions. With nearly 16 years of industry experience, BTTS has built a strong reputation for delivering reliable, efficient, and compliant operational services to national highways, expressways, and large-scale infrastructure projects. Our expertise lies in maximizing toll revenue, ensuring uninterrupted operations, maintaining the highest safety standards, and providing customized solutions that meet the evolving needs of highway concessionaires and government authorities.
+              Bheema Tolling & Traffic Solution Pvt. Ltd. (BTTS) is one of India&apos;s leading providers of integrated Toll Management, Highway Operations & Maintenance (O&M), Traffic Management, Incident Response, Road Maintenance, and Professional Manpower Solutions. With nearly 16 years of industry experience, BTTS has built a strong reputation for delivering reliable, efficient, and compliant operational services to national highways, expressways, and large-scale infrastructure projects. Our expertise lies in maximizing toll revenue, ensuring uninterrupted operations, maintaining the highest safety standards, and providing customized solutions that meet the evolving needs of highway concessionaires and government authorities.
             </p>
             <p>
-              Trusted by prestigious organizations such as NHAI, NHIT, L&T IDPL, Maple Highways, Adani Road O&M, Welspun, KMC Constructions, and Essel Infra, BTTS has successfully managed some of India's most demanding toll plazas and highway infrastructure projects. Backed by a highly skilled workforce, experienced leadership, and a commitment to operational excellence, we continue to deliver innovative, sustainable, and value-driven services that enhance infrastructure performance, improve road safety, and create long-term value for our clients. Guided by our philosophy, <span className="font-semibold text-[#D9A441]">"Our People Are Your Strength,"</span> we remain dedicated to building safer, smarter, and more efficient transportation infrastructure across India.
+              Trusted by prestigious organizations such as NHAI, NHIT, L&T IDPL, Maple Highways, Adani Road O&M, Welspun, KMC Constructions, and Essel Infra, BTTS has successfully managed some of India&apos;s most demanding toll plazas and highway infrastructure projects. Backed by a highly skilled workforce, experienced leadership, and a commitment to operational excellence, we continue to deliver innovative, sustainable, and value-driven services that enhance infrastructure performance, improve road safety, and create long-term value for our clients. Guided by our philosophy, <span className="font-semibold text-[#D9A441]">&quot;Our People Are Your Strength,&quot;</span> we remain dedicated to building safer, smarter, and more efficient transportation infrastructure across India.
             </p>
           </div>
         </div>
@@ -208,9 +174,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
-
-    
-      
     </>
   );
 }
