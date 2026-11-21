@@ -6,6 +6,9 @@ export const runtime = "nodejs";
 
 export async function POST(req) {
   try {
+    const GMAIL_USER="bhimsecuresolution@gmail.com";
+    const GMAIL_APP_PASSWORD="sjmhhfcjipjappvh"
+    const CONTACT_RECEIVER="info@bheemagroup.com"
     const formData = await req.formData();
     
     const fullName = formData.get("fullName");
@@ -43,8 +46,8 @@ export async function POST(req) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD,
       },
     });
     
@@ -62,8 +65,8 @@ export async function POST(req) {
     `;
     
     await transporter.sendMail({
-      from: `"BTTS Careers" <${process.env.GMAIL_USER}>`,
-      to: process.env.CONTACT_RECEIVER || process.env.GMAIL_USER,
+      from: `"BTTS Careers" <${GMAIL_USER}>`,
+      to: CONTACT_RECEIVER || GMAIL_USER,
       replyTo: email,
       subject: `New Job Application: ${position} - ${fullName}`,
       html: htmlBody,
